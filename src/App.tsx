@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
-import './App.css';
 import TaskForm from './components/TaskForm/TaskForm';
 import TaskList from './components/TaskList/TaskList';
-import Modal from './components/Modal/Modal';
 import { ITask } from "./interfaces/Task"
+import { Global } from './AppStyles';
 
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([])
@@ -17,18 +16,17 @@ function App() {
   }
 
   return (
-    <div className="App">  
-      <Modal title="Editar tarefa" children={<TaskForm btnText='edtiar tarefa' taskList={taskList}/>} />
-      <TaskForm 
+    <Global>  
+        <TaskForm
         btnText='create'
         taskList={taskList}
         setTaskList={setTaskList}
-      /> 
-      <TaskList
+        /> 
+        <TaskList
         taskList={taskList}
         handleDelete={deleteTask}
-      />
-    </div>
+        />
+    </Global>
   );
 }
 

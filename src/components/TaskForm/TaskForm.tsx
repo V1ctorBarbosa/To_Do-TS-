@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
-import { Form, Input, InputBnt, Label } from './TaskFormStyles'
+import React, { useState, ChangeEvent, FormEvent } from 'react'
+import { Form, Input, InputBnt } from './TaskFormStyles'
 import { ITask } from "../../interfaces/Task"
 
 
@@ -11,7 +11,6 @@ interface Props {
 
 const TaskForm = ({btnText, taskList, setTaskList}: Props) => {
 
-  const [id, setId] = useState<number>(0)
   const [title, setTitle] = useState<string>("")
 
   const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -22,9 +21,8 @@ const TaskForm = ({btnText, taskList, setTaskList}: Props) => {
     
     setTaskList!([...taskList, newTask])
     setTitle("")
-
-    console.log(taskList)
   }
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === "title") {
       setTitle(e.target.value)
@@ -32,20 +30,19 @@ const TaskForm = ({btnText, taskList, setTaskList}: Props) => {
   }
   
   return (
-    <Form onSubmit={addTaskHandler}>
-      <Label htmlFor='title'>Notes</Label>
-      <Input 
-        type="text"
-        name='title'
-        placeholder='write here...'
-        onChange={handleChange}
-        value={title}
-        />
-        
-      <InputBnt 
-        type="submit"
-        value={btnText} />
-    </Form>
+      <Form onSubmit={addTaskHandler}>
+        <Input
+          type="text"
+          name='title'
+          placeholder='write here...'
+          onChange={handleChange}
+          value={title}
+          />
+        <InputBnt
+          type="submit"
+          value={btnText}
+          />
+      </Form>
   )
 }
 
